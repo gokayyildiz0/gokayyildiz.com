@@ -5,14 +5,21 @@ import ThemeToogle from "./ThemeToogle.astro";
 <header class="container flex flex-row mx-auto">
     <a
         class="dark:hover:text-neutral-100 hover:text-neutral-950"
-        href="mailto:gokayildiz@icloud.com">gokayildiz@icloud.com</a
+        href="mailto:gokayildiz@icloud.com"
+        aria-label="Email Gokay Yildiz">gokayildiz@icloud.com</a
     >
-    <nav class="flex flex-row-reverse flex-1 order-last">
+    <nav
+        class="flex flex-row-reverse flex-1 order-last"
+        aria-label="Main Navigation"
+    >
         <ul class="inline-flex flex-row gap-5">
             <li class="dark:hover:text-neutral-100 hover:text-neutral-950">
-                <a href="/">Home</a>
+                <a href="/" aria-label="Home Page">Home</a>
             </li>
-            <li><ThemeToogle /></li>
+            <li class="dark:hover:text-neutral-100 hover:text-neutral-950">
+                <a href="/blog" aria-label="Home Page">Blog</a>
+            </li>
+            <li><ThemeToogle aria-label="Toggle Theme" /></li>
         </ul>
     </nav>
 </header>
