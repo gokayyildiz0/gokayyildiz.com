@@ -1,5 +1,6 @@
 ---
 import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
 interface Props {
 	title: string;
@@ -84,6 +85,7 @@ const { title } = Astro.props;
 		<main class="flex flex-col gap-20">
 			<slot />
 		</main>
+		<Footer />
 	</body>
 </html>
 <style is:global>
