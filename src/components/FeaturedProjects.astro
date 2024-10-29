@@ -1,10 +1,9 @@
 ---
-import { projects } from "../pages/projects.astro";
-import type { Project } from "../pages/projects.astro";
+import { getCollection } from "astro:content";
 
-const featuredProjects: Project[] = projects.filter(
-    (project) => project.featured,
-);
+const projects = await getCollection("projects");
+
+const featuredProjects = projects.filter((project) => project.data.featured);
 ---
 
 <article
@@ -35,19 +34,19 @@ const featuredProjects: Project[] = projects.filter(
             ) : (
                 featuredProjects.map((project) => (
                     <a
-                        href={project.link}
+                        href={project.data.link}
                         target="_blank"
                         rel="noopener noreferrer"
                         class="flex flex-col gap-5 content-center rounded-lg p-5 border border-neutral-400 hover:border-neutral-950 dark:hover:border-neutral-100 duration-300 hover:-translate-y-2"
-                        aria-label={`Navigat to GitHub repo of ${project.title}`}
+                        aria-label={`Navigat to GitHub repo of ${project.data.title}`}
                     >
                         <div class="flex flex-col gap-5">
                             <div class="flex flex-row">
                                 <h4 class="text-neutral-950 dark:text-neutral-100 flex-grow">
-                                    {project.title}
+                                    {project.data.title}
                                 </h4>
                             </div>
-                            <p class="truncate">{project.description}</p>
+                            <p class="truncate">{project.data.description}</p>
                         </div>
                     </a>
                 ))
