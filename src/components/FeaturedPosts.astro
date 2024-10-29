@@ -24,42 +24,47 @@ const lastPosts = (await getCollection("blog")).reverse().slice(0, 2);
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         {
-            lastPosts.map((post) => (
-                <a
-                    class="flex flex-col gap-5 content-center rounded-lg p-5 border border-neutral-400 hover:border-neutral-950 dark:hover:border-neutral-100 duration-300 hover:-translate-y-2"
-                    href={`/blog/${post.slug}/`}
-                    aria-label={`Read more about ${post.data.title}`}
-                >
-                    <Picture
-                        class:list={["rounded-lg", "w-full"]}
-                        src={post.data.image.url}
-                        alt={post.data.image.alt}
-                        width="300"
-                        height="200"
-                        loading="eager"
-                    />
+            lastPosts.length === 0 ? (
+                <p class="text-neutral-950 dark:text-neutral-100">
+                    No posts found.
+                </p>
+            ) : (
+                lastPosts.map((post) => (
+                    <a
+                        class="flex flex-col gap-5 content-center rounded-lg p-5 border border-neutral-400 hover:border-neutral-950 dark:hover:border-neutral-100 duration-300 hover:-translate-y-2"
+                        href={`/blog/${post.slug}/`}
+                        aria-label={`Read more about ${post.data.title}`}
+                    >
+                        <Picture
+                            class:list={["rounded-lg", "w-full"]}
+                            src={post.data.image.url}
+                            alt={post.data.image.alt}
+                            width="300"
+                            height="200"
+                            loading="eager"
+                        />
 
-                    <div class="flex flex-col gap-5">
-                        <div class="flex flex-row">
-                            <h4 class="text-neutral-950 dark:text-neutral-100 flex-grow">
-                                {post.data.title}
-                            </h4>
-                            <p class="text-neutral-500 dark:text-neutral-400">
-                                {new Date(post.data.pubDate).toLocaleDateString(
-                                    "en-US",
-                                    {
+                        <div class="flex flex-col gap-5">
+                            <div class="flex flex-row">
+                                <h4 class="text-neutral-950 dark:text-neutral-100 flex-grow">
+                                    {post.data.title}
+                                </h4>
+                                <p class="text-neutral-500 dark:text-neutral-400">
+                                    {new Date(
+                                        post.data.pubDate,
+                                    ).toLocaleDateString("en-US", {
                                         year: "numeric",
                                         month: "long",
                                         day: "numeric",
-                                    },
-                                )}
-                            </p>
-                        </div>
+                                    })}
+                                </p>
+                            </div>
 
-                        <p class="truncate">{post.data.description}</p>
-                    </div>
-                </a>
-            ))
+                            <p class="truncate">{post.data.description}</p>
+                        </div>
+                    </a>
+                ))
+            )
         }
     </div>
 </article>
