@@ -1,0 +1,49 @@
+---
+import DefaultLayout from "../layouts/DefaultLayout.astro";
+
+interface Project {
+    title: string;
+    description: string;
+    link: string;
+    featured: boolean;
+}
+export const projects: Project[] = [];
+
+export type { Project };
+---
+
+<DefaultLayout title="Projects">
+    <article class="flex flex-col gap-12">
+        <h1 class="text-3xl text-neutral-950 dark:text-neutral-100">
+            Projects
+        </h1>
+        <div class="flex flex-col gap-5">
+            {
+                projects.length === 0 ? (
+                    <p class="text-neutral-950 dark:text-neutral-100">
+                        No projects found.
+                    </p>
+                ) : (
+                    projects.map((project) => (
+                        <a
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="flex flex-col gap-5 content-center rounded-lg p-5 border border-neutral-400 hover:border-neutral-950 dark:hover:border-neutral-100 duration-300 hover:-translate-y-2"
+                            aria-label={`Navigat to GitHub repo of ${project.title}`}
+                        >
+                            <div class="flex flex-col gap-5">
+                                <div class="flex flex-row">
+                                    <h4 class="text-neutral-950 dark:text-neutral-100 flex-grow">
+                                        {project.title}
+                                    </h4>
+                                </div>
+                                <p class="truncate">{project.description}</p>
+                            </div>
+                        </a>
+                    ))
+                )
+            }
+        </div>
+    </article>
+</DefaultLayout>
