@@ -15,7 +15,7 @@ const featuredProjects = projects.filter((project) => project.data.featured);
             id="latest-posts-heading"
             class="flex-grow text-lg dark:text-neutral-100 text-neutral-950"
         >
-            Selected projects (4)
+            Selected projects ({featuredProjects.length})
         </h3>
         <a
             class="hover:text-neutral-950 dark:hover:text-neutral-100 cursor-pointer underline decoration-dashed underline-offset-8 transition-colors duration-300"
