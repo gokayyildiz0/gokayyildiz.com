@@ -1,18 +1,71 @@
 ---
+import { Image } from "astro:assets";
 import DefaultLayout from "./DefaultLayout.astro";
 const { frontmatter } = Astro.props;
 ---
 
 <DefaultLayout title={frontmatter.title}>
-    <article>
-        <p>{frontmatter.pubDate.toString().slice(0, 10)}</p>
-        <p><em>{frontmatter.description}</em></p>
-        <p>Written by: {frontmatter.author}</p>
-        <img
+    <article id="blog-post" class="flex flex-col gap-5">
+        <h1>{frontmatter.title}</h1>
+        <Image
+            class:list={["rounded-lg", "w-full"]}
             src={frontmatter.image.url}
             width="300"
+            height="300"
             alt={frontmatter.image.alt}
+            loading="eager"
         />
+        <hr />
+        <p class="font-semibold">
+            {frontmatter.pubDate.toString().slice(0, 10)}
+        </p>
+        <p class="font-semibold">Written by: {frontmatter.author}</p>
+        <hr />
+        <p><em>{frontmatter.description}</em></p>
+        <hr />
         <slot />
     </article>
 </DefaultLayout>
+<style is:global>
+    #blog-post {
+        h1 {
+            font-size: 3.75rem;
+            line-height: 1;
+        }
+        h2 {
+            font-size: 1.875rem /* 30px */;
+            line-height: 2.25rem /* 36px */;
+        }
+        h3 {
+            font-size: 1.25rem /* 20px */;
+            line-height: 1.75rem /* 28px */;
+        }
+        ul li {
+            list-style-type: disc;
+            list-style-position: inside;
+            ::marker {
+                color: #dc2626;
+            }
+        }
+
+        a {
+            color: #dc2626;
+        }
+    }
+    html.dark {
+        #blog-post {
+            h1 {
+                color: #f5f5f5;
+            }
+            h2 {
+                color: #f5f5f5;
+            }
+            h3 {
+                color: #f5f5f5;
+            }
+            a {
+                color: #f87171;
+            }
+        }
+    }
+</style>
