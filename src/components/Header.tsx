@@ -31,9 +31,13 @@ export default component$(() => {
                         <ThemeToogle />
                     </li>
                 </ul>
-                <ul class=" inline-flex md:hidden flex-row gap-2" role="list">
+                <ul class=" inline-flex md:hidden flex-row gap-5" role="list">
                     <li role="listitem">
-                        <button onClick$={() => isMobileMenuOpen.value = true}>Mobile</button>
+                        <button class="flex justify-center items-center content-center" onClick$={() => isMobileMenuOpen.value = true}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" role="img" aria-hidden="true">
+                                <path fill="currentColor" d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
+                            </svg>
+                        </button>
                     </li>
                     <li role="listitem">
                         <ThemeToogle />
