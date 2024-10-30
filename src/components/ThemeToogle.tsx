@@ -1,31 +1,36 @@
-import { component$, useStore, useVisibleTask$, $ } from "@builder.io/qwik";
+import { component$, useVisibleTask$, $ } from "@builder.io/qwik";
 
 export default component$(() => {
-    // Initialize theme state
-    const themeStore = useStore({
-        theme: "light",
+    // Detects the user's theme preference and applies it
+    const applyTheme = $(() => {
+        const savedTheme = localStorage.getItem("theme") ||
+            (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+
+        document.documentElement.classList.toggle("dark", savedTheme === "dark");
+        localStorage.setItem("theme", savedTheme);
     });
 
-    // Set the theme based on local storage or system preference
-    useVisibleTask$(() => {
-        const savedTheme = localStorage.getItem("theme");
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-        if (savedTheme) {
-            themeStore.theme = savedTheme;
-        } else if (prefersDark) {
-            themeStore.theme = "dark";
-        }
-
-        document.documentElement.classList.toggle("dark", themeStore.theme === "dark");
-        localStorage.setItem("theme", themeStore.theme);
-    });
-
-    // Handle theme toggle click
+    // Toggles the theme when the button is clicked
     const handleToggleClick = $(() => {
-        themeStore.theme = themeStore.theme === "dark" ? "light" : "dark";
-        document.documentElement.classList.toggle("dark", themeStore.theme === "dark");
-        localStorage.setItem("theme", themeStore.theme);
+        document.documentElement.classList.toggle("dark");
+        const newTheme = document.documentElement.classList.contains("dark") ? "dark" : "light";
+        localStorage.setItem("theme", newTheme);
+    });
+
+    // Runs once on component mount and sets up the after-swap event listener
+    useVisibleTask$(() => {
+        applyTheme();
+
+        // Add the astro:after-swap listener for reapplying the theme after page transitions
+        document.addEventListener("astro:after-swap", () => {
+            applyTheme();
+
+            // Rebind the toggle event listener to the button after each swap
+            const themeToggle = document.getElementById("themeToggle");
+            if (themeToggle && !themeToggle.onclick) {
+                themeToggle.onclick = handleToggleClick;
+            }
+        });
     });
 
     return (
@@ -35,7 +40,7 @@ export default component$(() => {
             class="flex justify-center items-center h-full text-red-500 dark:text-neutral-400 dark:hover:text-neutral-100 hover:text-neutral-950"
             aria-label="Toggle theme"
         >
-            {themeStore.theme === "light" ? (
+            {typeof document !== 'undefined' && document.documentElement.classList.contains("dark") ? (
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
