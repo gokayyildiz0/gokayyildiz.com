@@ -3,9 +3,9 @@ tags: ["vim", "webdev"]
 author: "Gökay Yıldız"
 description: “Use the Force to Navigate Your Code”
 image:
+  url: /images/post-banners/vim-like-a-jedi.svg
   alt: "Banner for the post Vim like a Jedi"
-  url: "/images/post-banners/vim-like-a-jedi.svg"
-pubDate: "2024-10-30"
+pubDate: 2024-10-30
 title: "Vim Like A Jedi"
 ---
 
