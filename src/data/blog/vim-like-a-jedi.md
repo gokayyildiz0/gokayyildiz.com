@@ -5,7 +5,8 @@ description: “Use the Force to Navigate Your Code”
 image:
   url: /images/post-banners/vim-like-a-jedi.svg
   alt: "Banner for the post Vim like a Jedi"
-pubDate: 2024-10-30
+  url: "/images/post-banners/vim-like-a-jedi.svg"
+pubDate: "2024-11-22"
 title: "Vim Like A Jedi"
 ---
 
