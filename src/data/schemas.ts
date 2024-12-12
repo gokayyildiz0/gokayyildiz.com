@@ -1,11 +1,14 @@
 import { z } from 'astro:content';
 
-const projectsSchema = z.object({
-    title: z.string(),
-    description: z.string(),
-    link: z.string(),
-    featured: z.boolean(),
-})
+const projectsSchema =
+    z.object({
+        title: z.string(),
+        description: z.string(),
+        link: z.string(),
+        featured: z.boolean(),
+    });
+
+
 
 const postsSchema = ({ image }: { image: () => { refine: (arg0: (img: any) => boolean, arg1: { message: string; }) => any; }; }) => z.object({
     title: z.string(),
@@ -18,6 +21,7 @@ const postsSchema = ({ image }: { image: () => { refine: (arg0: (img: any) => bo
         }),
         alt: z.string()
     }),
+
     tags: z.array(z.string())
 })
 

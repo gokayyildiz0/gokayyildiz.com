@@ -4,7 +4,7 @@ import { Picture } from "astro:assets";
 
 import { getCollection } from "astro:content";
 
-const posts = await getCollection("blog");
+const posts = await getCollection("posts");
 ---
 
 <DefaultLayout title="Blog">
@@ -21,15 +21,18 @@ const posts = await getCollection("blog");
                     posts.map((post) => (
                         <a
                             class="flex flex-col gap-5 content-center rounded-lg p-5 border border-neutral-400 hover:border-neutral-950 dark:hover:border-neutral-100 duration-300 hover:-translate-y-2"
-                            href={`/blog/${post.slug}/`}
+                            href={`/blog/${post.id}/`}
                             role="article"
-                            aria-describedby={`description-${post.slug}`}
+                            aria-describedby={`description-${post.id}`}
                             aria-label={`Read more about ${post.data.title}`}
                         >
                             <Picture
                                 class:list={["rounded-lg", "w-full"]}
                                 src={post.data.image.url}
-                                alt={post.data.image.alt || `Image for ${post.data.title}`}
+                                alt={
+                                    post.data.image.alt ||
+                                    `Image for ${post.data.title}`
+                                }
                                 width="300"
                                 height="200"
                                 aria-label={`Image for ${post.data.title}`}
@@ -52,7 +55,12 @@ const posts = await getCollection("blog");
                                     </p>
                                 </div>
 
-                                <p id={`description-${post.slug}`} class="truncate">{post.data.description}</p>
+                                <p
+                                    id={`description-${post.id}`}
+                                    class="truncate"
+                                >
+                                    {post.data.description}
+                                </p>
                             </div>
                         </a>
                     ))
