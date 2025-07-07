@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import DefaultLayout from "./DefaultLayout.astro";
 const { frontmatter } = Astro.props;
 ---
@@ -7,8 +6,8 @@ const { frontmatter } = Astro.props;
 <DefaultLayout title={frontmatter.title}>
     <article id="blog-post" class="flex flex-col gap-5">
         <h1>{frontmatter.title}</h1>
-        <Image
-            class:list={["rounded-lg", "w-full"]}
+        <img
+            class="rounded-lg w-full"
             src={frontmatter.image.url}
             width="300"
             height="300"

@@ -1,5 +1,4 @@
 ---
-import { Picture } from "astro:assets";
 import { getCollection } from "astro:content";
 
 const lastPosts = (await getCollection("blog")).reverse().slice(0, 2);
@@ -35,10 +34,10 @@ const lastPosts = (await getCollection("blog")).reverse().slice(0, 2);
                         href={`/blog/${post.slug}/`}
                         aria-label={`Read more about ${post.data.title}`}
                     >
-                        <Picture
+                        <img
                             class:list={["rounded-lg", "w-full"]}
                             src={post.data.image.url}
-                            alt={post.data.image.alt}
+                            alt={post.data.image.url}
                             width="300"
                             height="200"
                             loading="eager"

@@ -1,6 +1,5 @@
 ---
 import DefaultLayout from "../../layouts/DefaultLayout.astro";
-import { Picture } from "astro:assets";
 
 import { getCollection } from "astro:content";
 
@@ -26,10 +25,13 @@ const posts = await getCollection("blog");
                             aria-describedby={`description-${post.slug}`}
                             aria-label={`Read more about ${post.data.title}`}
                         >
-                            <Picture
+                            <img
                                 class:list={["rounded-lg", "w-full"]}
                                 src={post.data.image.url}
-                                alt={post.data.image.alt || `Image for ${post.data.title}`}
+                                alt={
+                                    post.data.image.alt ||
+                                    `Image for ${post.data.title}`
+                                }
                                 width="300"
                                 height="200"
                                 aria-label={`Image for ${post.data.title}`}
@@ -52,7 +54,12 @@ const posts = await getCollection("blog");
                                     </p>
                                 </div>
 
-                                <p id={`description-${post.slug}`} class="truncate">{post.data.description}</p>
+                                <p
+                                    id={`description-${post.slug}`}
+                                    class="truncate"
+                                >
+                                    {post.data.description}
+                                </p>
                             </div>
                         </a>
                     ))
