@@ -37,7 +37,7 @@ jobs:
           run_install: false
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm ci
         working-directory: ${{ env.BUILD_PATH }}
 
       - name: Setup Pages
