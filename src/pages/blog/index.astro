@@ -3,7 +3,7 @@ import DefaultLayout from "../../layouts/DefaultLayout.astro";
 
 import { getCollection } from "astro:content";
 
-const posts = await getCollection("blog");
+const posts = await getCollection("posts");
 ---
 
 <DefaultLayout title="Blog">
@@ -20,9 +20,9 @@ const posts = await getCollection("blog");
                     posts.map((post) => (
                         <a
                             class="flex flex-col gap-5 content-center rounded-lg p-5 border border-neutral-400 hover:border-neutral-950 dark:hover:border-neutral-100 duration-300 hover:-translate-y-2"
-                            href={`/blog/${post.slug}/`}
+                            href={`/blog/${post.id}/`}
                             role="article"
-                            aria-describedby={`description-${post.slug}`}
+                            aria-describedby={`description-${post.id}`}
                             aria-label={`Read more about ${post.data.title}`}
                         >
                             <img

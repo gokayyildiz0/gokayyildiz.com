@@ -4,7 +4,7 @@ pubDate: 2024-10-30
 description: “Here’s the story of my weekend journey choosing the tech stack for my personal website.”
 author: "Gökay Yıldız"
 image:
-  url: "/images/post-banners/astro-tailwind-qwik.svg"
+  url: /images/post-banners/astro-tailwind-qwik.svg
   alt: "Example"
 tags: ["astro", "qwik", "webdev"]
 ---

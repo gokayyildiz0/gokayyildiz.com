@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 
-const lastPosts = (await getCollection("blog")).reverse().slice(0, 2);
+const lastPosts = (await getCollection("posts")).reverse().slice(0, 2);
 ---
 
 <article class="flex flex-col gap-12" aria-labelledby="latest-posts-heading">
@@ -31,7 +31,7 @@ const lastPosts = (await getCollection("blog")).reverse().slice(0, 2);
                 lastPosts.map((post) => (
                     <a
                         class="flex flex-col gap-5 content-center rounded-lg p-5 border border-neutral-400 hover:border-neutral-950 dark:hover:border-neutral-100 duration-300 hover:-translate-y-2"
-                        href={`/blog/${post.slug}/`}
+                        href={`/blog/${post.id}/`}
                         aria-label={`Read more about ${post.data.title}`}
                     >
                         <img
