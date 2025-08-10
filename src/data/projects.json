@@ -4,6 +4,11 @@
       "description": "My personal website built with Astro and Tailwind CSS.",
       "link": "https://github.com/gokayyildiz0/gokayyildiz.com",
       "featured": true
+  },
+  "blackjack": {
+      "title": "Blackjack (LÖVE 2D)",
+      "description": "A simple Blackjack card game built with LÖVE 2D.",
+      "link": "https://github.com/gokayyildiz0/blackjack_love2d",
+      "featured": true
   }
-    
 }
